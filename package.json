@@ -1,0 +1,28 @@
+{
+  "name": "prueba-skydropx",
+  "version": "1.0.0",
+  "description": "Prueba tecnica para skydropx",
+  "scripts": {
+    "start": "webpack serve --mode development --open --port 3000",
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jhon Hamilton Franco Luna <hamilton5217@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.17.2",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-styled-components": "^2.0.2",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
+  }
+}

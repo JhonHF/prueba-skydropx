@@ -1,0 +1,22 @@
+{
+  "presets": [
+    "@babel/preset-react",
+    [
+      "@babel/preset-env",
+      {
+        "targets": "defaults"
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": false,
+        "displayName": true,
+        "minify": true,
+        "transpileTemplateLiterals": true
+      }
+    ]
+  ]
+}
