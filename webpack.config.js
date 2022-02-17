@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 const babelLoader = {
   test: /\.(js|jsx)$/,
@@ -11,23 +12,30 @@ const babelLoader = {
   },
 };
 
+const cssLoader = {
+  test: /\.css$/,
+  use: ["style-loader", "css-loader"],
+};
+
+const htmlPlugin = new HtmlWebpackPlugin({
+  template: "./index.html",
+  filename: "./index.html",
+  minify: "auto",
+});
+
+const envPlugin = new Dotenv();
+
 module.exports = {
-  entry: "./index.js",
+  entry: "./index.jsx",
   output: {
     filename: "[contenthash].js",
     assetModuleFilename: "assets/[hash][ext][query]",
     clean: true,
   },
   module: {
-    rules: [babelLoader],
+    rules: [babelLoader, cssLoader],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./index.html",
-      filename: "./index.html",
-      minify: "auto",
-    }),
-  ],
+  plugins: [htmlPlugin, envPlugin],
   optimization: {
     minimize: true,
   },
