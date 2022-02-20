@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
+const path = require("path");
 
 const babelLoader = {
   test: /\.(js|jsx)$/,
@@ -11,24 +13,38 @@ const babelLoader = {
   },
 };
 
+const cssLoader = {
+  test: /\.css$/,
+  use: ["style-loader", "css-loader"],
+};
+
+const htmlPlugin = new HtmlWebpackPlugin({
+  template: "./index.html",
+  filename: "./index.html",
+  minify: "auto",
+});
+
+const envPlugin = new Dotenv();
+
 module.exports = {
-  entry: "./index.js",
+  entry: path.join(__dirname, "src/index.jsx"),
   output: {
+    path: path.join(__dirname, "dist"),
     filename: "[contenthash].js",
-    assetModuleFilename: "assets/[hash][ext][query]",
+    publicPath: "/",
     clean: true,
   },
   module: {
-    rules: [babelLoader],
+    rules: [babelLoader, cssLoader],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./index.html",
-      filename: "./index.html",
-      minify: "auto",
-    }),
-  ],
+  plugins: [htmlPlugin, envPlugin],
   optimization: {
     minimize: true,
+  },
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    port: 3000,
+    open: true,
   },
 };
