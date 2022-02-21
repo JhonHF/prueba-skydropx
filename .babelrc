@@ -8,7 +8,7 @@
         "modules": "auto",
         "useBuiltIns": "usage",
         "corejs": 3,
-        "debug": true
+        "debug": false
       }
     ]
   ],
@@ -17,9 +17,9 @@
       "babel-plugin-styled-components",
       {
         "ssr": false,
-        "displayName": true,
+        "displayName": false,
         "minify": true,
-        "transpileTemplateLiterals": true
+        "transpileTemplateLiterals": false
       }
     ]
   ]

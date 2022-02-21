@@ -85,18 +85,6 @@ export const shipmentFormReducer = (state = initialState, action) => {
         selectedRateId: action.payload,
       };
     }
-    case SET_NEXT_STEP: {
-      return {
-        ...state,
-        shipmentFormStep: state.shipmentFormStep + 1,
-      };
-    }
-    case SET_PREVIOUS_STEP: {
-      return {
-        ...state,
-        shipmentFormStep: state.shipmentFormStep - 1,
-      };
-    }
     case SET_LABEL_URL: {
       return {
         ...state,

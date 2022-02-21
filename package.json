@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Jhon Hamilton Franco Luna <hamilton5217@gmail.com>",
   "license": "MIT",
@@ -14,11 +14,17 @@
     "@babel/core": "^7.17.2",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@types/jest": "^27.4.0",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
+    "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.3",
     "babel-plugin-styled-components": "^2.0.2",
     "css-loader": "^6.6.0",
     "dotenv-webpack": "^7.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-to-json": "^3.6.2",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.5.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.2",
