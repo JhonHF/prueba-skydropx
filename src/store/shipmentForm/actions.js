@@ -24,14 +24,6 @@ export const setRateId = (rateId) => ({
   payload: rateId,
 });
 
-export const setNextStep = () => ({
-  type: shipmentFormActionTypes.SET_NEXT_STEP,
-});
-
-export const setPreviousStep = () => ({
-  type: shipmentFormActionTypes.SET_PREVIOUS_STEP,
-});
-
 export const setLabelUrl = (url) => ({
   type: shipmentFormActionTypes.SET_LABEL_URL,
   payload: url,
