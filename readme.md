@@ -1,6 +1,6 @@
 # Prueba tecnica para SkyDropx
 # Jhon Hamilton Franco Luna
-
+# link: https://d3q4ctkrj4hf6.cloudfront.net/skydropx/index.html
 
 ## Informacion general
 ### para inicializarlo solo debe darse npm start.
