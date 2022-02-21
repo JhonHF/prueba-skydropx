@@ -1,16 +1,17 @@
 import React from "react";
-import { MainLayout } from "../components/layouts/mainLayout";
+import { Home } from "../components/pages/home";
+import { ShippingCreation } from "../components/pages/shippingCreation";
 
 export const listRoutes = [
   {
     label: "Home",
     path: "/",
-    component: <MainLayout />,
+    component: <Home/>,
   },
   {
     label: "Crear envio",
     path: "/shipments/creation",
-    component: <h1>Creacion de envio</h1>,
+    component: <ShippingCreation/>,
   },
   {
     label: "Lista de envios",

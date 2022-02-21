@@ -1,14 +1,14 @@
 import React from "react";
 import { NavBar } from "../../molecules/navbar";
-import { StyledSection } from "./styles";
+import { LayoutWrapper } from "./styles";
 
 export const MainLayout = ({ children }) => {
   return (
-    <>
+    <LayoutWrapper>
       <header>
         <NavBar />
       </header>
-      <StyledSection>{children}</StyledSection>
-    </>
+      <section className="section_content">{children}</section>
+    </LayoutWrapper>
   );
 };
