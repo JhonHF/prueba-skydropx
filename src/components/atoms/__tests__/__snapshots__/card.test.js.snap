@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card component GIVEN a set of valid props WHEN the component is rendered without props THEN should display a regular AddPrestation 1`] = `
+<styled.div
+  className="card p-3"
+  id="card"
+  onClick={[MockFunction]}
+  selected={false}
+>
+  <div
+    className="card-body"
+  >
+    <p>
+      Children
+    </p>
+  </div>
+</styled.div>
+`;

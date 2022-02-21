@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const StyledSection = styled.section`
-  overflow-y: auto;
-  height: max-content;
+export const LayoutWrapper = styled.div`
+  height: 100vh;
+  .section_content {
+    height: inherit;
+    overflow-y: auto;
+    background: #fafaff;
+  }
 `;

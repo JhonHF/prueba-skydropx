@@ -6,8 +6,6 @@ const {
   ADD_PACKAGE_INFO,
   ADD_RATE_OPTIONS,
   SET_RATE_ID_SELECTED,
-  SET_NEXT_STEP,
-  SET_PREVIOUS_STEP,
   SET_LABEL_URL,
   RESET_FORM,
 } = shipmentFormActionTypes;
@@ -48,9 +46,8 @@ const initialState = {
     length: "",
   },
   rateOptions: [],
-  selectedRateId: null,
+  selectedRateId: "",
   labelUrl: "",
-  shipmentFormStep: 0,
 };
 
 export const shipmentFormReducer = (state = initialState, action) => {
