@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 export const LabelCreation = () => {
   const { labelUrl } = useSelector((state) => state.shipmentForm);
@@ -6,11 +7,14 @@ export const LabelCreation = () => {
   return (
     <div>
       <button type="button">
-        <a href={labelUrl} target="_blank">
-          Ver guia
-        </a>
+        {labelUrl ? (
+          <a href={labelUrl} target="_blank">
+            Ver guia
+          </a>
+        ) : (
+          "Guia no disponible"
+        )}
       </button>
-      {labelUrl}
     </div>
   );
 };

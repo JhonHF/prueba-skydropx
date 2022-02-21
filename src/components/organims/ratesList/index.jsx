@@ -19,6 +19,7 @@ export const RatesList = ({ nextStep, previousStep }) => {
   const handleSubmitRates = async () => {
     try {
       setDisabledSubmit(true);
+      dispatch(setRateId(selectedRate));
       const response = await createLabel(selectedRate);
       dispatch(setLabelUrl(response));
       nextStep();
@@ -59,7 +60,7 @@ export const RatesList = ({ nextStep, previousStep }) => {
       key={id}
       selected={id === selectedRate}
       className="m-3"
-      onClick={handleSelectRate(id)}
+      onClick={() => handleSelectRate(id)}
     >
       <h5 className="card-title">Proveedor: {attributes.provider}</h5>
       <p className="card-text">Servicio {attributes.service_level_name}</p>
@@ -72,7 +73,7 @@ export const RatesList = ({ nextStep, previousStep }) => {
 
   return (
     <div>
-      {rateOptions.map(renderRate)}
+      {rateOptions && rateOptions.map(renderRate)}
       <FormStepper listOptions={handleStepperOptions} />
     </div>
   );
