@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { ShippingAddress } from "../../forms/shippingAddress";
 import { ShippingParcel } from "../../forms/shippingParcel";
 import { MainLayout } from "../../layouts/mainLayout";
