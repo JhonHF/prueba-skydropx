@@ -1,44 +1,19 @@
 import React, { useState } from "react";
 import { Form, Formik } from "formik";
 import { useSelector, useDispatch } from "react-redux";
-
 import { parcelFieldsList } from "./fieldList";
 import { Input } from "../../atoms/input";
 import { FormStepper } from "../../molecules/formStepper";
-
 import { schemaValidation } from "./validations";
-import { createShipment } from "../../../services/shipments";
-import {
-  resetForm,
-  addRateList,
-  addPackageInfo,
-} from "../../../store/shipmentForm/actions";
+import { resetForm } from "../../../store/shipmentForm/actions";
 
-export const ShippingParcel = ({ nextStep, previousStep }) => {
+export const ShippingParcel = ({
+  previousStep,
+  disabledSubmit,
+  handleSubmit,
+}) => {
   const dispatch = useDispatch();
-  const { packageInfo, shipperInfo, shipToInfo } = useSelector(
-    (state) => state.shipmentForm
-  );
-
-  const [disabledSubmit, setDisabledSubmit] = useState(false);
-
-  const handleSubmit = async (values) => {
-    try {
-      setDisabledSubmit(true);
-      const res = await createShipment({
-        shipperInfo,
-        shipToInfo,
-        packageInfo: values,
-      });
-
-      dispatch(addPackageInfo(values));
-      dispatch(addRateList(res));
-      nextStep();
-    } catch (error) {
-      console.log("apiError", error);
-      setDisabledSubmit(false);
-    }
-  };
+  const { packageInfo } = useSelector((state) => state.shipmentForm);
 
   const handleStepperOptions = [
     {

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { listRoutes } from "../../../routes/listRoutes";
 import { NavItem } from "../../atoms/navLink";
 
 export const NavBar = () => {
@@ -22,9 +21,7 @@ export const NavBar = () => {
         </span>
         <div className={`collapse navbar-collapse ${showClass}`}>
           <ul className="navbar-nav me-auto mb-2 mb-xl-0">
-            {listRoutes.map((route, index) => (
-              <NavItem route={route.path} label={route.label} key={index} />
-            ))}
+            <NavItem route="/" label="Crear envio" />
           </ul>
         </div>
       </div>

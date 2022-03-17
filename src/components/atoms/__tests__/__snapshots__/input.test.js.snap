@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Input component GIVEN a set of valid props WHEN the component is rendered without props THEN should display a regular AddPrestation 1`] = `
-<Input
-  className="form-control"
-  name="name"
-/>
-`;

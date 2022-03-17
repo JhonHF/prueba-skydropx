@@ -10,9 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 axios.interceptors.request.use(applyInterceptors);
 
 export const App = () => (
-  <BrowserRouter>
-    <Provider store={applicationStore}>
-      <AppRoutes />
-    </Provider>
-  </BrowserRouter>
+  <Provider store={applicationStore}>
+    <AppRoutes />
+  </Provider>
 );
