@@ -1,36 +1,66 @@
-   /*  
-   import React from "react";
+import React from "react";
 import { Provider } from "react-redux";
-import { fireEvent, render, act, wai } from "@testing-library/react";
+import { render, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Router } from "react-router-dom";
 import { applicationStore } from "../../../store";
 import { ShippingCreation } from ".";
-import { shipToExtraFields } from "../../forms/shippingAddress/fieldList";
+import {
+  commonFields,
+  shipToExtraFields,
+} from "../../forms/shippingAddress/fieldList";
+import { BrowserRouter } from "react-router-dom";
 
-import "@testing-library/jest-dom";
-const AllTheProviders = ({ children }) => {
-  const history = createMemoryHistory();
-  return (
-    <Router history={history}>
-      <Provider store={applicationStore}>{children}</Provider>
-    </Router>
-  );
-};
-const customRender = (ui, options) =>
-  render(ui, { wrapper: AllTheProviders, ...options });
 describe("Test cases with ShippingCreation", () => {
-  it("Should render shipTo fields when role is shipper and nextstep button is pressed", async () => {
-    const { getByText, getByLabelText, container } = customRender(
-      <ShippingCreation />
+  it("Should render shipTo fields when role is shipper, required fields are filled and nextstep button is pressed", async () => {
+    const { getByLabelText, getByText, unmount } = render(
+      <BrowserRouter>
+        <Provider store={applicationStore}>
+          <ShippingCreation />
+        </Provider>
+      </BrowserRouter>
     );
 
-    const nextButton = getByText("Siguiente");
+    const zipField = getByLabelText(commonFields[3].label);
+    const submitButton = getByText("Siguiente");
+
     await act(async () => {
-      userEvent.click(nextButton);
-      console.log(container.children);
-         const field = getByLabelText(shipToExtraFields[0].label);
-      expect(field).toBeDefined(); 
+      await userEvent.click(zipField);
+      await userEvent.type(zipField, "1234");
+      await userEvent.click(submitButton);
     });
+
+    const shipToField = getByLabelText(shipToExtraFields[0].label);
+
+    expect(shipToField).toBeInTheDocument();
+
+    unmount();
   });
-});*/
+
+  it("Should view stored shipper data when form is submmited and go to next step, then go back", async () => {
+    const { getByLabelText, getByText } = render(
+      <BrowserRouter>
+        <Provider store={applicationStore}>
+          <ShippingCreation />
+        </Provider>
+      </BrowserRouter>
+    );
+
+    await act(async () => {
+      const submitButton = getByText("Siguiente");
+      const zipField = getByLabelText(commonFields[3].label);
+      await userEvent.click(zipField);
+      await userEvent.type(zipField, "12345");
+      await userEvent.click(submitButton);
+    });
+
+    await act(async () => {
+      const returnButton = getByText("Volver");
+      await userEvent.click(returnButton);
+    });
+
+    expect(getByLabelText(commonFields[3].label)).toHaveAttribute(
+      "value",
+      "12345"
+    );
+  });
+});

@@ -1,41 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Formik } from "formik";
-import { useSelector, useDispatch } from "react-redux";
 import { commonFields, shipToExtraFields } from "./fieldList";
 import { schemaValidation } from "./validations";
-import {
-  addShipperInfo,
-  addShiptoInfo,
-  resetForm,
-} from "../../../store/shipmentForm/actions";
 import { Input } from "../../atoms/input";
 import { FormStepper } from "../../molecules/formStepper";
 
-export const ShippingAddress = ({ role, nextStep, previousStep }) => {
-  const dispatch = useDispatch();
-  const { shipperInfo, shipToInfo } = useSelector(
-    (state) => state.shipmentForm
-  );
-
-  const [disabledSubmit, setDisabledSubmit] = useState(false);
-
-  const initialValues = {
-    shipper: shipperInfo,
-    shipTo: shipToInfo,
-  };
-
-  const handleSubmit = {
-    shipper: (values) => {
-      setDisabledSubmit(true);
-      dispatch(addShipperInfo(values));
-      nextStep();
-    },
-    shipTo: (values) => {
-      setDisabledSubmit(true);
-      dispatch(addShiptoInfo(values));
-      nextStep();
-    },
-  };
+export const ShippingAddress = ({
+  role,
+  previousStep,
+  handleSubmit,
+  disabledSubmit,
+  initialValues,
+  resetForm,
+}) => {
 
   const renderField = (fieldProps, index) => (
     <Input {...fieldProps} key={index} />
@@ -48,7 +25,7 @@ export const ShippingAddress = ({ role, nextStep, previousStep }) => {
     {
       label: "Cancelar",
       type: "button",
-      onClick: () => dispatch(resetForm()),
+      onClick: ()=> resetForm(),
       disabled: role === "shipper",
     },
     {
@@ -66,8 +43,8 @@ export const ShippingAddress = ({ role, nextStep, previousStep }) => {
 
   return (
     <Formik
-      initialValues={initialValues[role]}
-      onSubmit={handleSubmit[role]}
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
       validationSchema={schemaValidation}
       enableReinitialize
     >

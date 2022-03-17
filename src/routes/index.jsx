@@ -1,11 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { listRoutes } from "./listRoutes";
+import { ShippingCreation } from "../components/pages/shippingCreation";
 
 export const AppRoutes = () => (
   <Routes>
-    {listRoutes.map((routeItem, index) => (
-      <Route path={routeItem.path} element={routeItem.component} key={index} />
-    ))}
+    <Route path="/" element={<ShippingCreation />} />
   </Routes>
 );

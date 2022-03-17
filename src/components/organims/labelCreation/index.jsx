@@ -6,7 +6,7 @@ export const LabelCreation = () => {
 
   return (
     <div>
-      <button type="button">
+      <button type="button" disabled={!!labelUrl}>
         {labelUrl ? (
           <a href={labelUrl} target="_blank">
             Ver guia

@@ -1,9 +1,11 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { act, fireEvent, render } from "@testing-library/react";
+import { act, render } from "@testing-library/react";
 import { applicationStore } from "../../../store";
-import { ShippingParcel } from ".";
 import { parcelFieldsList } from "./fieldList";
+import { ShippingParcel } from ".";
+import userEvent from "@testing-library/user-event";
+
 describe("Test cases with ShippingParcel", () => {
   it("Should render at least one shipping parcel field", () => {
     const { getByLabelText } = render(
@@ -13,22 +15,26 @@ describe("Test cases with ShippingParcel", () => {
     );
 
     const field = getByLabelText(parcelFieldsList[0].label);
+
     expect(field).toBeDefined();
   });
 
-/*   it("Should render error if an input is focused", async () => {
-    const { getByLabelText, getByText } = render(
+  it("Should show and error if a required field is empty", async () => {
+    const { getByLabelText, getAllByText } = render(
       <Provider store={applicationStore}>
         <ShippingParcel />
       </Provider>
     );
 
-    const field = getByLabelText(parcelFieldsList[3].label);
-    fireEvent.focusIn(field);
-    fireEvent.blur(field);
+    const requiredField = getByLabelText(parcelFieldsList[1].label);
     await act(async () => {
-        const errorMessage = getByText(/este campo es requerido/i);
-        expect(errorMessage).toBeDefined();
+      await userEvent.click(requiredField);
+      await userEvent.type(requiredField, "1234");
+      await userEvent.keyboard("{Backspace>4/}");
     });
+
+    const errorMessage = getAllByText("Este campo es requerido");
+    expect(errorMessage[0]).toBeDefined();
   });
-}); */
+  
+});
